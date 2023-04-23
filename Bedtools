@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --job-name=bedtools
+#SBATCH --partition=hpc
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=30g
+#SBATCH --time=24:00:00
+#SBATCH --output=/shared/Project_3_Resources/GroupAZJ/O_E/bed.out
+#SBATCH --error=/shared/Project_3_Resources/GroupAZJ/O_E/bed.err
+
+#activate Conda and change directory
+source $HOME/.bash_profile
+conda activate /shared/home/styab21/miniconda3/envs/bedtools_env
+cd /shared/Project_3_Resources/GroupAZJ
+
+#bedtools
+
+bedtools intersect -a /shared/Project_3_Resources/GroupAZJ/Data/Data/C_excelsa_V5_braker2_wRseq.gff3 -b /shared/Project_3_Resources/GroupAZJ/LAB_Vs_ODN_15_BPM.bed -wa > LAB_Vs_ODN_Final.txt
+bedtools intersect -a /shared/Project_3_Resources/GroupAZJ/Data/Data/C_excelsa_V5_braker2_wRseq.gff3 -b /shared/Project_3_Resources/GroupAZJ/LAB_Vs_NEN_15_BPM.bed -wa > LAB_Vs_NEN_Final.txt
+
+
